@@ -293,28 +293,12 @@ function ProductList({ onHomeClick }) {
     }}>
       <li style={{ marginRight: '30px' }}><a href="/" onClick={handleHomeClick} style={{ color: 'white', fontSize: '30px', textDecoration: 'none' }}>Paradise Nursery</a></li>
       <li style={{ marginRight: '30px', cursor: 'pointer' }} onClick={handlePlantsClick}>Plants</li>
-      <li style={{ marginRight: '30px', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center' }} onClick={handleCartClick}>
-  <span style={{ position: 'relative', display: 'inline-block', marginRight: '6px' }}>
-    🛒
-    <span style={{
-      position: 'absolute',
-      top: '-10px',
-      right: '-12px',
-      background: 'red',
-      color: 'white',
-      borderRadius: '50%',
-      minWidth: '22px',
-      height: '22px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '15px',
-      fontWeight: 'bold',
-      zIndex: 2
-    }}>{cartCount}</span>
-  </span>
-  <span style={{ color: 'white', fontSize: '20px', marginLeft: '6px' }}>Cart</span>
-</li>
+      <li
+    style={{ marginRight: '30px', cursor: 'pointer', color: 'white', fontSize: '20px', display: 'flex', alignItems: 'center' }}
+    onClick={handleCartClick}
+  >
+    🛒 {cartCount}
+  </li>
 
     </ul>
   </nav>
@@ -341,7 +325,7 @@ function ProductList({ onHomeClick }) {
                 />
                 <div className="product-title" style={{ fontWeight: 'bold', fontSize: '18px', margin: '10px 0' }}>{plant.name}</div>
                 <div className="product-description" style={{ margin: '8px 0', color: '#666' }}>{plant.description}</div>
-                <div className="product-cost" style={{ fontSize: '16px', color: '#388E3C', marginBottom: '10px' }}>${plant.cost}</div>
+                <div className="product-cost" style={{ fontSize: '16px', color: '#388E3C', marginBottom: '10px' }}>{plant.cost}</div>
                 <button
   className="product-button"
   onClick={() => handleAddToCart(plant)}
