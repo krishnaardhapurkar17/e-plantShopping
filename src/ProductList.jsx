@@ -293,13 +293,29 @@ function ProductList({ onHomeClick }) {
     }}>
       <li style={{ marginRight: '30px' }}><a href="/" onClick={handleHomeClick} style={{ color: 'white', fontSize: '30px', textDecoration: 'none' }}>Paradise Nursery</a></li>
       <li style={{ marginRight: '30px', cursor: 'pointer' }} onClick={handlePlantsClick}>Plants</li>
-      <li style={{ cursor: 'pointer', position: 'relative' }} onClick={handleCartClick}>
-        🛒 Cart
-        <span style={{
-          position: 'absolute', top: '-10px', right: '-15px', background: 'red',
-          color: 'white', borderRadius: '50%', padding: '4px 9px', fontSize: '16px'
-        }}>{cartCount}</span>
-      </li>
+      <li style={{ marginRight: '30px', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center' }} onClick={handleCartClick}>
+  <span style={{ position: 'relative', display: 'inline-block', marginRight: '6px' }}>
+    🛒
+    <span style={{
+      position: 'absolute',
+      top: '-10px',
+      right: '-12px',
+      background: 'red',
+      color: 'white',
+      borderRadius: '50%',
+      minWidth: '22px',
+      height: '22px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '15px',
+      fontWeight: 'bold',
+      zIndex: 2
+    }}>{cartCount}</span>
+  </span>
+  <span style={{ color: 'white', fontSize: '20px', marginLeft: '6px' }}>Cart</span>
+</li>
+
     </ul>
   </nav>
 
@@ -327,19 +343,21 @@ function ProductList({ onHomeClick }) {
                 <div className="product-description" style={{ margin: '8px 0', color: '#666' }}>{plant.description}</div>
                 <div className="product-cost" style={{ fontSize: '16px', color: '#388E3C', marginBottom: '10px' }}>${plant.cost}</div>
                 <button
-                  className="product-button"
-                  onClick={() => handleAddToCart(plant)}
-                  style={{
-                    padding: '8px 15px',
-                    backgroundColor: '#4CAF50',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  Add to Cart
-                </button>
+  className="product-button"
+  onClick={() => handleAddToCart(plant)}
+  disabled={!!addedToCart[plant.name]}
+  style={{
+    padding: '8px 15px',
+    backgroundColor: addedToCart[plant.name] ? '#b0b0b0' : '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: addedToCart[plant.name] ? 'not-allowed' : 'pointer'
+  }}
+>
+  {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+</button>
+
               </div>
             ))}
           </div>
